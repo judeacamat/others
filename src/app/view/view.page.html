@@ -37,7 +37,7 @@
         </ion-item>
       </ion-list>
     </ion-col> -->
-    <ion-segment  [(ngModel)]="selectedSegment">
+    <ion-segment  [(ngModel)]="selectedSegment"  >
       <ion-segment-button value="fire" checked>
         <ion-label>Fire Extinguisher</ion-label>
       </ion-segment-button>
@@ -49,25 +49,25 @@
       </ion-segment-button>
     </ion-segment>
 
-    <ion-col size="2"><ion-list>
-      <ion-item>
-        <ion-select class="custom-select" label="" placeholder="">
+    <ion-col >
+      <ion-list><ion-item>
+        <ion-select *ngIf="selectedSegment === 'fire'"  [(ngModel)]="selectedOption" class="custom-select" label="" placeholder="">
           <ion-select-option value="Fire_Extinguisher">E1</ion-select-option>
           <ion-select-option value="Smoke_Detector">E2</ion-select-option>
           <ion-select-option value="Sprinkler">E3</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list></ion-col>
-    <ion-col size="4"><ion-item>
-      <ion-select class="custom-select1"  placeholder="Buildings">
+    <ion-col ><ion-item>
+      <ion-select *ngIf="selectedSegment === 'fire'"   [(ngModel)]="selectedOption1" class="custom-select1"  placeholder="Buildings">
         <ion-select-option value="Fire_Extinguisher">Building A</ion-select-option>
         <ion-select-option value="Smoke_Detector">Building B</ion-select-option>
         <ion-select-option value="Sprinkler">Building C</ion-select-option>
       </ion-select>
     </ion-item></ion-col>
-    <ion-col size="4"><ion-item>
+    <ion-col ><ion-item>
 
-      <ion-select class="custom-select1"  placeholder="Floor">
+      <ion-select *ngIf="selectedSegment === 'fire'"   [(ngModel)]="selectedOption2" class="custom-select1"  placeholder="Floor">
         <ion-select-option value="Fire_Extinguisher">1st Floor</ion-select-option>
         <ion-select-option value="Smoke_Detector">2nd Floor</ion-select-option>
         <ion-select-option value="Sprinkler">3rd Floor</ion-select-option>
@@ -78,13 +78,11 @@
 
 
 
-<div *ngIf="selectedSegment === 'smoke'">
-  <p>This is the content for Segment 2.</p>
-</div>
 
 
 
-<div *ngIf="selectedSegment === 'fire'">
+
+<div *ngIf="selectedOption && selectedOption1 && selectedOption2 &&  selectedSegment === 'fire' ">
   <ion-grid fixed>
     <ion-row>
       <ion-col >Remarks</ion-col>
@@ -98,6 +96,38 @@
       <ion-col>Gauge</ion-col>
       <ion-col>Pin/Lock</ion-col>
       <ion-col>Body</ion-col>
+      <ion-col>Inspected By</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>06/26/2023</ion-col>
+      <ion-col>9:00 AM</ion-col>
+      <ion-col><ion-icon name="checkbox"></ion-icon></ion-col>
+      <ion-col><ion-icon name="checkbox"></ion-icon></ion-col>
+      <ion-col><ion-icon name="checkbox"></ion-icon></ion-col>
+      <ion-col><ion-icon name="checkbox"></ion-icon></ion-col>
+      <ion-col>Kc Dimayuga</ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+
+
+<div *ngIf="selectedOption && selectedOption1 && selectedOption2 &&  selectedSegment === 'smoke'">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col >Remarks</ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>Date</ion-col>
+      <ion-col>Time</ion-col>
+      <ion-col>Nozzle</ion-col>
+      <ion-col>Sensor</ion-col>
+      <ion-col>Pin/Lock</ion-col>
+      <ion-col>Sound</ion-col>
       <ion-col>Inspected By</ion-col>
     </ion-row>
   </ion-grid>
